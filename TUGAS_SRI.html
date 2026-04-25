@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Sri Wahyuni</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Icon Sosmed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #eff6ff;
+            --dark-blue: #1e3a8a;
+            --white: #ffffff;
+            --gray-text: #4b5563;
+            --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--gray-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            margin-left: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-links button:hover {
+            color: var(--primary-blue);
+        }
+
+        /* --- Page Transitions --- */
+        .page {
+            display: none;
+            padding-top: 80px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            padding: 60px 10%;
+            background: linear-gradient(135deg, var(--white) 60%, var(--light-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70vh;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .hero-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background-color: var(--primary-blue);
+            box-shadow: var(--soft-shadow);
+            overflow: hidden;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 60px 10%;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            background: var(--light-blue);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--soft-shadow);
+        }
+
+        /* --- Skills --- */
+        .skill-card {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: var(--soft-shadow);
+            border: 1px solid #e5e7eb;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .skill-card i {
+            color: #D24726;
+            font-size: 1.5rem;
+        }
+
+        /* --- Hobi Section (Main) --- */
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 350px;
+        }
+
+        .book-img {
+            height: 100%;
+            width: 100%;
+            background-color: #f3f4f6;
+        }
+
+        .book-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.9), transparent);
+            color: white;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transform: translateY(70%);
+            transition: var(--transition);
+        }
+
+        .book-card:hover .book-overlay {
+            transform: translateY(0);
+        }
+
+        .book-overlay h3 { font-size: 1.2rem; }
+        .book-overlay span { font-size: 0.8rem; margin-top: 5px; display: block; }
+
+        /* --- Hobi Detail Page --- */
+        .detail-header {
+            text-align: center;
+            padding: 40px 10%;
+            background: var(--light-blue);
+            border-radius: 0 0 50px 50px;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--soft-shadow);
+            margin-top: -30px;
+            margin-bottom: 50px;
+        }
+
+        .author-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-blue);
+        }
+
+        .novel-detail-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .novel-item {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .novel-item img {
+            width: 180px;
+            border-radius: 12px;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .novel-info h3 {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .novel-info .tag {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 10%;
+            background: var(--dark-blue);
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column-reverse; text-align: center; }
+            .hero-img { width: 200px; height: 200px; }
+            .novel-item { flex-direction: column; text-align: center; align-items: center; }
+            .author-box { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="showPage('main')">Sri.Com</div>
+        <div class="nav-links">
+            <button onclick="showPage('main')">Beranda</button>
+            <button onclick="showPage('hobi-detail')">Ruang Literasi</button>
+        </div>
+    </nav>
+
+    <!-- HALAMAN UTAMA -->
+    <main id="main" class="page active">
+        <header>
+            <div class="hero-text">
+                <h1>SRI WAHYUNI</h1>
+                <p>Pelajar SMKN 1 BANGKINANG</p>
+            </div>
+            <div class="hero-img">
+                <img src="https://i.ibb.co.com/K8c89CY/foto-sri.jpg" alt="Sri Wahyuni">
+            </div>
+        </header>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>Halo! Perkenalkan nama saya <strong>Sri Wahyuni</strong>. Saya adalah seorang pelajar dari <strong>SMKN 1 Bangkinang</strong>. Saya sangat suka membaca buku cerita.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skill-card">
+                <i class="fa-solid fa-file-powerpoint"></i>
+                <span>Microsoft PowerPoint</span>
+            </div>
+        </section>
+
+        <section id="hobi-preview">
+            <h2 class="section-title">Hobi Saya</h2>
+            <p style="margin-bottom: 20px;">Klik buku untuk melihat detail literasi.</p>
+            <div class="books-container">
+                <div class="book-card" onclick="showPage('hobi-detail')">
+                    <div class="book-img">
+                        <img src="https://i.ibb.co.com/Z6QYJW0t/download-4.jpg" alt="Bumi">
+                    </div>
+                    <div class="book-overlay">
+                        <h3>Novel Bumi</h3>
+                        <span>Lihat Detail &rarr;</span>
+                    </div>
+                </div>
+                <div class="book-card" onclick="showPage('hobi-detail')">
+                    <div class="book-img">
+                        <img src="https://i.ibb.co.com/pv4SNt5j/download-3.jpg" alt="Hujan">
+                    </div>
+                    <div class="book-overlay">
+                        <h3>Novel Hujan</h3>
+                        <span>Lihat Detail &rarr;</span>
+                    </div>
+                </div>
+                <div class="book-card" onclick="showPage('hobi-detail')">
+                    <div class="book-img">
+                        <img src="https://i.ibb.co.com/13cN3Wf/download-5.jpg" alt="Rindu">
+                    </div>
+                    <div class="book-overlay">
+                        <h3>Novel Rindu</h3>
+                        <span>Lihat Detail &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- HALAMAN DETAIL HOBI -->
+    <div id="hobi-detail" class="page">
+        <div class="detail-header">
+            <h1>Ruang Imajinasi & Literasi</h1>
+            <p style="max-width: 600px; margin: 15px auto; font-style: italic;">
+                "Membaca adalah cara terbaik untuk bertualang tanpa harus menggerakkan kaki."
+            </p>
+        </div>
+
+        <section>
+            <!-- Profil Penulis -->
+            <div class="author-box">
+                <img src="https://i.ibb.co.com/93Ysw3yL/tereliye.jpg" alt="Tere Liye" class="author-img">
+                <div>
+                    <h2 style="color: var(--dark-blue);">Penulis Favorit: Tere Liye</h2>
+                    <p>Tere Liye adalah salah satu penulis paling produktif di Indonesia. Karyanya mencakup berbagai genre mulai dari fantasi dunia paralel, drama romantis, hingga aksi politik.</p>
+                </div>
+            </div>
+
+            <!-- Daftar Novel -->
+            <div class="novel-detail-grid">
+                <!-- Bumi -->
+                <div class="novel-item">
+                    <img src="https://i.ibb.co.com/7d6tnD24/download-2.jpg" alt="Bumi">
+                    <div class="novel-info">
+                        <span class="tag">Serial Dunia Paralel</span>
+                        <h3>Bumi</h3>
+                        <p>Mengisahkan tentang Raib, seorang gadis remaja berusia 15 tahun yang memiliki kemampuan aneh: ia bisa menghilang. Petualangannya dimulai ketika ia menyadari bahwa ada dunia lain selain Bumi yang kita tinggali, yaitu dunia paralel yang penuh dengan teknologi maju dan kekuatan misterius.</p>
+                    </div>
+                </div>
+
+                <!-- Hujan -->
+                <div class="novel-item">
+                    <img src="https://i.ibb.co.com/RkLHvymy/download-1.jpg" alt="Hujan">
+                    <div class="novel-info">
+                        <span class="tag">Sci-Fi & Romance</span>
+                        <h3>Hujan</h3>
+                        <p>Berlatar masa depan tahun 2042-2050, novel ini menceritakan kisah Lail dan Esok di tengah dunia yang hancur akibat bencana gunung meletus yang dahsyat. Ini adalah kisah tentang melupakan, tentang menerima masa lalu, dan tentang teknologi canggih yang bisa menghapus ingatan sedih.</p>
+                    </div>
+                </div>
+
+                <!-- Rindu -->
+                <div class="novel-item">
+                    <img src="https://i.ibb.co.com/DgGkfw5y/download-6.jpg" alt="Rindu">
+                    <div class="novel-info">
+                        <span class="tag">Historical Fiction</span>
+                        <h3>Rindu</h3>
+                        <p>Berlatar tahun 1938 di atas kapal uap Blitar Holland yang melakukan perjalanan haji dari Makassar menuju Jeddah. Di atas kapal tersebut, tersimpan berbagai pertanyaan besar tentang masa lalu, kebencian, dan cinta yang belum usai yang dialami oleh para penumpangnya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button onclick="showPage('main')" style="padding: 12px 25px; background: var(--primary-blue); color: white; border: none; border-radius: 10px; cursor: pointer;">Kembali ke Beranda</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/sry_niy" target="_blank"><i class="fab fa-instagram"></i> @sry_niy</a>
+        </div>
+        <p style="margin-top: 10px;">&copy; 2024 Sri Wahyuni | Mari Berdiskusi Literasi!</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Sembunyikan semua halaman
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Tampilkan halaman yang dipilih
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll ke atas otomatis
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
